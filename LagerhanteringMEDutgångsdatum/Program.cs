@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using LagerhanteringMEDutgångsdatum.Models;
 
 namespace LagerhanteringMEDutgångsdatum
 {
@@ -8,6 +10,9 @@ namespace LagerhanteringMEDutgångsdatum
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // ✅ Registrera EF DbContext
+            builder.Services.AddDbContext<LagerhanteringContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
