@@ -21,14 +21,14 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
         }
 
         // GET: api/Items
-        [HttpGet]
+        [HttpGet("gett-all")]
         public async Task<ActionResult<IEnumerable<Item>>> GetAllItems()
         {
             return await _context.Items.ToListAsync();
         }
 
         // GET: api/Items/5
-        [HttpGet("{id}")]
+        [HttpGet("get-by/{id}")]
         public async Task<ActionResult<Item>> GetItemById(int id)
         {
             var targetItem = await _context.Items.FindAsync(id);
@@ -43,7 +43,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
 
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateItemById(int id, UpdateItemDto dto)
         {
             if (id != dto.ItemId)
@@ -78,7 +78,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
 
             // POST: api/Items
             // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-            [HttpPost]
+            [HttpPost("create-item")]
         public async Task<ActionResult<Item>> CreateItem(CreateItemDto dto)
         {
             var item = new Item
@@ -97,7 +97,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
         }
 
         // DELETE: api/Items/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteItemById(int id)
         {
             var item = await _context.Items.FindAsync(id);
