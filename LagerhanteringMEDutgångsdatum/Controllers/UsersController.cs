@@ -22,14 +22,14 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
+        [HttpGet("get-all")]
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
+        [HttpGet("get-by/{id}")]
         public async Task<ActionResult<User>> GetUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -44,7 +44,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateUser(int id, UpdateUserDto dto)
         {
             if (id != dto.UsersId) return BadRequest();
@@ -61,7 +61,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("create/user")]
         public async Task<ActionResult<User>> CreateUser(CreateUserDto dto)
         {
             var user = new User
@@ -78,7 +78,7 @@ namespace LagerhanteringMEDutgångsdatum.Controllers
 
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
             var user = await _context.Users.FindAsync(id);
